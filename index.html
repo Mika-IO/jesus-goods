@@ -1,42 +1,91 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Luz Divina Kids - 35 Livros de Colorir Cristãos</title>
+    <title>Jesus Goods - 35 Livros de Colorir Cristãos</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/heroicons/2.0.18/24/outline/styles.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <style>
-        /* Adicionando uma fonte mais amigável, similar à do exemplo */
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
         body {
             font-family: 'Poppins', sans-serif;
         }
+
+        @media (max-width: 640px) {
+            .pagination-mobile-fix {
+                position: relative;
+                /* Tira do posicionamento absoluto */
+                bottom: auto;
+                /* Reseta a posição inferior */
+                margin-top: 20px;
+                /* Cria um espaço acima das bolinhas */
+            }
+        }
+
+        /* ADICIONE ESTE CÓDIGO PARA CONTROLAR A ALTURA DA IMAGEM DO HEADER NO DESKTOP */
+        @media (min-width: 768px) {
+
+            /* Aplica apenas em telas maiores que 768px de largura */
+            .header-image {
+                max-height: 700px;
+                /* Ajuste este valor conforme necessário */
+                height: auto;
+                /* Garante que a proporção seja mantida */
+                margin-bottom: 50px;
+                /* Adiciona uma margem inferior */
+                margin-left: 50px;
+                margin-top: 50px;
+            }
+        }
     </style>
 </head>
+
 <body class="bg-slate-50">
+    <div class="bg-white py-2 text-blue-600">
+
+        <div class="container mx-auto px-6 text-center text-sm ">
+            <i class="fa-solid fa-shield-halved "></i> SSL Seguro
+        </div>
+        <div class="container mx-auto px-6 text-center text-sm text-green-600 font-semibold">
+            <i class="fa-solid fa-lock "></i> Compra 100% Segura e Protegida
+        </div>
+    </div>
 
     <header class="bg-blue-600 text-white">
-        <div class="container mx-auto px-6 py-12 md:py-20">
+        <div class="container mx-auto px-6 py-8 md:py-20 min-h-screen">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
                 <div class="text-center md:text-left">
-                    <span class="text-blue-200 font-semibold tracking-wider">Luz Divina Kids Apresenta</span>
-                    <h1 class="text-4xl md:text-6xl font-bold mt-2 mb-4 leading-tight">35 Livros de Colorir Bíblicos</h1>
-                    <p class="text-lg md:text-xl text-blue-100 mb-6">Desperte a criatividade e ensine a Palavra de Deus para seus filhos da forma mais divertida!</p>
+                    <span class="text-blue-200 font-semibold tracking-wider">Jesus Goods</span>
+                    <h1 class="text-4xl md:text-6xl font-bold mt-2 mb-4 leading-tight">35 Livros de Colorir Bíblicos
+                    </h1>
+                    <p class="text-lg md:text-xl text-blue-100 mb-6">Desperte a criatividade e ensine a Palavra de Deus
+                        para seus filhos da forma mais divertida!</p>
                     <ul class="space-y-2 text-left mb-8 inline-block">
-                        <li class="flex items-center"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2 text-green-300" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>Acesso Vitalício e Imediato</li>
-                        <li class="flex items-center"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2 text-green-300" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>Imprima quantas vezes quiser</li>
-                        <li class="flex items-center"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2 text-green-300" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>Material em PDF de alta qualidade</li>
+                        <li class="flex items-center"><i class="fa-solid fa-check text-green-300 mr-2"></i>Acesso
+                            Vitalício e Imediato</li>
+                        <li class="flex items-center"><i class="fa-solid fa-check text-green-300 mr-2"></i>Imprima
+                            quantas vezes quiser</li>
+                        <li class="flex items-center"><i class="fa-solid fa-check text-green-300 mr-2"></i>Material em
+                            PDF de alta qualidade</li>
                     </ul>
                     <div class="mt-4">
-                        <a href="#precos" class="bg-green-500 hover:bg-green-600 text-white font-bold text-xl py-4 px-10 rounded-lg shadow-lg transform hover:scale-105 transition-transform duration-300">
-                            QUERO MEUS LIVROS AGORA!
+                        <a href="#oferta"
+                            class="bg-green-500 hover:bg-green-600 text-white font-bold text-xl py-4 px-10 rounded-lg shadow-lg transform hover:scale-105 transition-transform duration-300">
+                            QUERO MEUS LIVROS!
                         </a>
-                        <p class="text-sm text-blue-200 mt-2">Compra segura e acesso imediato.</p>
+                        <p class="text-sm text-blue-200 mt-6">Compra segura e acesso imediato.</p>
                     </div>
                 </div>
                 <div>
-                    <img src="https://luzdivinakids.netlify.app/img/hero.png" alt="Crianças colorindo desenhos bíblicos com Jesus" class="rounded-lg">
+                    <img src="35_livros.png" alt="Crianças colorindo desenhos bíblicos com Jesus"
+                        class="rounded-lg header-image">
                 </div>
             </div>
         </div>
@@ -45,73 +94,316 @@
     <section class="py-16 bg-white">
         <div class="container mx-auto px-6 text-center">
             <h2 class="text-3xl font-bold text-slate-800 mb-2">Por que escolher nossos Livros?</h2>
-            <p class="text-slate-600 max-w-2xl mx-auto mb-12">Uma forma única de unir diversão, aprendizado e os ensinamentos de Deus.</p>
+            <p class="text-slate-600 max-w-2xl mx-auto mb-12">Uma forma única de unir diversão, aprendizado e os
+                ensinamentos de Deus.</p>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div class="p-8 border border-slate-200 rounded-lg">
-                    <div class="bg-blue-100 text-blue-600 rounded-full h-16 w-16 flex items-center justify-center mx-auto mb-4">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" /></svg>
+                    <div
+                        class="bg-blue-100 text-blue-600 rounded-full h-16 w-16 flex items-center justify-center mx-auto mb-4">
+                        <i class="fa-solid fa-book-bible text-3xl"></i>
                     </div>
                     <h3 class="text-xl font-bold text-slate-800 mb-2">Aprender Brincando</h3>
-                    <p class="text-slate-600">As crianças absorvem histórias bíblicas de forma natural e divertida enquanto pintam.</p>
+                    <p class="text-slate-600">As crianças absorvem histórias bíblicas de forma natural e divertida
+                        enquanto pintam.</p>
                 </div>
                 <div class="p-8 border border-slate-200 rounded-lg">
-                    <div class="bg-blue-100 text-blue-600 rounded-full h-16 w-16 flex items-center justify-center mx-auto mb-4">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8"><path stroke-linecap="round" stroke-linejoin="round" d="M9 13.5l3 3m0 0l3-3m-3 3v-6m1.06-4.19l-2.12-2.12a1.5 1.5 0 00-1.061-.44H4.5A2.25 2.25 0 002.25 6v12a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9a2.25 2.25 0 00-2.25-2.25h-5.379a1.5 1.5 0 01-1.06-.44z" /></svg>
+                    <div
+                        class="bg-blue-100 text-blue-600 rounded-full h-16 w-16 flex items-center justify-center mx-auto mb-4">
+                        <i class="fa-solid fa-file-pdf text-3xl"></i>
                     </div>
                     <h3 class="text-xl font-bold text-slate-800 mb-2">Material em PDF</h3>
-                    <p class="text-slate-600">Receba os arquivos em alta resolução e imprima no seu tempo, quantas cópias desejar.</p>
+                    <p class="text-slate-600">Receba os arquivos em alta resolução e imprima no seu tempo, quantas
+                        cópias desejar.</p>
                 </div>
                 <div class="p-8 border border-slate-200 rounded-lg">
-                     <div class="bg-blue-100 text-blue-600 rounded-full h-16 w-16 flex items-center justify-center mx-auto mb-4">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8"><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" /></svg>
+                    <div
+                        class="bg-blue-100 text-blue-600 rounded-full h-16 w-16 flex items-center justify-center mx-auto mb-4">
+                        <i class="fa-solid fa-lock text-3xl"></i>
                     </div>
                     <h3 class="text-xl font-bold text-slate-800 mb-2">Acesso Vitalício</h3>
-                    <p class="text-slate-600">Pague uma única vez e tenha acesso para sempre, incluindo futuras atualizações.</p>
+                    <p class="text-slate-600">Pague uma única vez e tenha acesso para sempre, incluindo futuras
+                        atualizações.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="precos" class="py-20 bg-slate-50">
+    <section class="py-16 bg-slate-50">
         <div class="container mx-auto px-6 text-center">
-            <h2 class="text-3xl font-bold text-slate-800 mb-2">Inscreva-se com uma Oferta Especial</h2>
-            <p class="text-slate-600 max-w-2xl mx-auto mb-12">Escolha o plano perfeito para sua família e comece hoje mesmo!</p>
+            <h2 class="text-3xl font-bold text-slate-800 mb-2">Conheça Nossos Livros de Colorir</h2>
+            <p class="text-slate-600 max-w-2xl mx-auto mb-12">Livros únicos para momentos de fé e relaxamento</p>
 
-            <div class="flex flex-col lg:flex-row justify-center items-center gap-8 max-w-4xl mx-auto">
-                <div class="w-full lg:w-1/2 border border-slate-300 rounded-lg p-8 bg-white">
-                    <h3 class="text-2xl font-bold text-slate-800">Pacote Essencial</h3>
-                    <p class="text-slate-500 mb-6">Perfeito para começar</p>
-                    <div class="text-5xl font-bold text-slate-900 mb-4">
-                        R$ 10,00
+            <div class="swiper mySwiper relative w-full max-w-6xl mx-auto">
+                <div class="swiper-wrapper">
+
+                    <div class="swiper-slide aspect-[4/5]">
+                        <img class="w-full h-full object-cover rounded-2xl shadow-lg"
+                            src="https://luzdivinakids.netlify.app/images/1-1.webp" alt="Livro de Colorir Cristão 1">
                     </div>
-                    <p class="text-slate-600 mb-6">Pagamento Único</p>
+                    <div class="swiper-slide aspect-[4/5]">
+                        <img class="w-full h-full object-cover rounded-2xl shadow-lg"
+                            src="https://luzdivinakids.netlify.app/images/2.webp" alt="Livro de Colorir Cristão 2">
+                    </div>
+                    <div class="swiper-slide aspect-[4/5]">
+                        <img class="w-full h-full object-cover rounded-2xl shadow-lg"
+                            src="https://luzdivinakids.netlify.app/images/3.webp" alt="Livro de Colorir Cristão 3">
+                    </div>
+                    <div class="swiper-slide aspect-[4/5]">
+                        <img class="w-full h-full object-cover rounded-2xl shadow-lg"
+                            src="https://luzdivinakids.netlify.app/images/4.webp" alt="Livro de Colorir Cristão 4">
+                    </div>
+                    <div class="swiper-slide aspect-[4/5]">
+                        <img class="w-full h-full object-cover rounded-2xl shadow-lg"
+                            src="https://luzdivinakids.netlify.app/images/5.webp" alt="Livro de Colorir Cristão 5">
+                    </div>
+                    <div class="swiper-slide aspect-[4/5]">
+                        <img class="w-full h-full object-cover rounded-2xl shadow-lg"
+                            src="https://luzdivinakids.netlify.app/images/6.webp" alt="Livro de Colorir Cristão 6">
+                    </div>
+                    <div class="swiper-slide aspect-[4/5]">
+                        <img class="w-full h-full object-cover rounded-2xl shadow-lg"
+                            src="https://luzdivinakids.netlify.app/images/7.webp" alt="Livro de Colorir Cristão 7">
+                    </div>
+                    <div class="swiper-slide aspect-[4/5]">
+                        <img class="w-full h-full object-cover rounded-2xl shadow-lg"
+                            src="https://luzdivinakids.netlify.app/images/8.webp" alt="Livro de Colorir Cristão 8">
+                    </div>
+                    <div class="swiper-slide aspect-[4/5]">
+                        <img class="w-full h-full object-cover rounded-2xl shadow-lg"
+                            src="https://luzdivinakids.netlify.app/images/9.webp" alt="Livro de Colorir Cristão 9">
+                    </div>
+                    <div class="swiper-slide aspect-[4/5]">
+                        <img class="w-full h-full object-cover rounded-2xl shadow-lg"
+                            src="https://luzdivinakids.netlify.app/images/2_1.png" alt="Livro de Colorir Cristão 10">
+                    </div>
+                    <div class="swiper-slide aspect-[4/5]">
+                        <img class="w-full h-full object-cover rounded-2xl shadow-lg"
+                            src="https://luzdivinakids.netlify.app/images/1-Capa.png" alt="Livro de Colorir Cristão 11">
+                    </div>
+                    <div class="swiper-slide aspect-[4/5]">
+                        <img class="w-full h-full object-cover rounded-2xl shadow-lg"
+                            src="https://luzdivinakids.netlify.app/images/2.png" alt="Livro de Colorir Cristão 12">
+                    </div>
+                    <div class="swiper-slide aspect-[4/5]">
+                        <img class="w-full h-full object-cover rounded-2xl shadow-lg"
+                            src="https://luzdivinakids.netlify.app/images/1-CAPA.png" alt="Livro de Colorir Cristão 13">
+                    </div>
+                    <div class="swiper-slide aspect-[4/5]">
+                        <img class="w-full h-full object-cover rounded-2xl shadow-lg"
+                            src="https://luzdivinakids.netlify.app/images/1.jpg" alt="Livro de Colorir Cristão 14">
+                    </div>
+                    <div class="swiper-slide aspect-[4/5]">
+                        <img class="w-full h-full object-cover rounded-2xl shadow-lg"
+                            src="https://luzdivinakids.netlify.app/images/Captura-de-Tela-2025-06-26-a-s-09-43-48.png"
+                            alt="Livro de Colorir Cristão 15">
+                    </div>
+                    <div class="swiper-slide aspect-[4/5]">
+                        <img class="w-full h-full object-cover rounded-2xl shadow-lg"
+                            src="https://luzdivinakids.netlify.app/images/Captura-de-Tela-2025-06-26-a-s-09-46-01.png"
+                            alt="Livro de Colorir Cristão 16">
+                    </div>
+                    <div class="swiper-slide aspect-[4/5]">
+                        <img class="w-full h-full object-cover rounded-2xl shadow-lg"
+                            src="https://luzdivinakids.netlify.app/images/Captura-de-Tela-2025-06-26-a-s-09-47-56.png"
+                            alt="Livro de Colorir Cristão 17">
+                    </div>
+                    <div class="swiper-slide aspect-[4/5]">
+                        <img class="w-full h-full object-cover rounded-2xl shadow-lg"
+                            src="https://luzdivinakids.netlify.app/images/Captura-de-Tela-2025-06-26-a-s-09-49-07.png"
+                            alt="Livro de Colorir Cristão 18">
+                    </div>
+                    <div class="swiper-slide aspect-[4/5]">
+                        <img class="w-full h-full object-cover rounded-2xl shadow-lg"
+                            src="https://luzdivinakids.netlify.app/images/tita-HC-capajesusquad21x21-01b.jpg"
+                            alt="Livro de Colorir Cristão 19">
+                    </div>
+                    <div class="swiper-slide aspect-[4/5]">
+                        <img class="w-full h-full object-cover rounded-2xl shadow-lg"
+                            src="https://luzdivinakids.netlify.app/images/5-20250305_151831-0004.png"
+                            alt="Livro de Colorir Cristão 20">
+                    </div>
+                    <div class="swiper-slide aspect-[4/5]">
+                        <img class="w-full h-full object-cover rounded-2xl shadow-lg"
+                            src="https://luzdivinakids.netlify.app/images/01-CAPA-COM-BORDA.png"
+                            alt="Livro de Colorir Cristão 21">
+                    </div>
+                    <div class="swiper-slide aspect-[4/5]">
+                        <img class="w-full h-full object-cover rounded-2xl shadow-lg"
+                            src="https://luzdivinakids.netlify.app/images/CAPA-1.png" alt="Livro de Colorir Cristão 22">
+                    </div>
+                    <div class="swiper-slide aspect-[4/5]">
+                        <img class="w-full h-full object-cover rounded-2xl shadow-lg"
+                            src="https://luzdivinakids.netlify.app/images/CAPA-2.png" alt="Livro de Colorir Cristão 23">
+                    </div>
+                    <div class="swiper-slide aspect-[4/5]">
+                        <img class="w-full h-full object-cover rounded-2xl shadow-lg"
+                            src="https://luzdivinakids.netlify.app/images/CAPA.png" alt="Livro de Colorir Cristão 24">
+                    </div>
+                    <div class="swiper-slide aspect-[4/5]">
+                        <img class="w-full h-full object-cover rounded-2xl shadow-lg"
+                            src="https://luzdivinakids.netlify.app/images/CAPA_3.png" alt="Livro de Colorir Cristão 25">
+                    </div>
+                    <div class="swiper-slide aspect-[4/5]">
+                        <img class="w-full h-full object-cover rounded-2xl shadow-lg"
+                            src="https://luzdivinakids.netlify.app/images/CAPA_1.png" alt="Livro de Colorir Cristão 26">
+                    </div>
+                    <div class="swiper-slide aspect-[4/5]">
+                        <img class="w-full h-full object-cover rounded-2xl shadow-lg"
+                            src="https://luzdivinakids.netlify.app/images/CAPA_2.png" alt="Livro de Colorir Cristão 27">
+                    </div>
+                    <div class="swiper-slide aspect-[4/5]">
+                        <img class="w-full h-full object-cover rounded-2xl shadow-lg"
+                            src="https://luzdivinakids.netlify.app/images/LIVRO-HEROIS-DA-FE.png"
+                            alt="Livro de Colorir Cristão - Heróis da Fé">
+                    </div>
+                    <div class="swiper-slide aspect-[4/5]">
+                        <img class="w-full h-full object-cover rounded-2xl shadow-lg"
+                            src="https://luzdivinakids.netlify.app/images/LIVRO-MULHERES-DA-BIBLIA.png"
+                            alt="Livro de Colorir Cristão - Mulheres da Bíblia">
+                    </div>
+                    <div class="swiper-slide aspect-[4/5]">
+                        <img class="w-full h-full object-cover rounded-2xl shadow-lg"
+                            src="https://luzdivinakids.netlify.app/images/LIVRO-VIRTUDES.png"
+                            alt="Livro de Colorir Cristão - Virtudes">
+                    </div>
+                    <div class="swiper-slide aspect-[4/5]">
+                        <img class="w-full h-full object-cover rounded-2xl shadow-lg"
+                            src="https://luzdivinakids.netlify.app/images/LIVRO-VERSI-CULOS-E-PROMESSAS.png"
+                            alt="Livro de Colorir Cristão - Versículos e Promessas">
+                    </div>
+
+                </div>
+
+                <div class="swiper-button-next text-blue-600 after:text-2xl after:font-extrabold"></div>
+                <div class="swiper-button-prev text-blue-600 after:text-2xl after:font-extrabold"></div>
+                <div class="swiper-pagination pagination-mobile-fix"></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 bg-blue-600 text-white">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-12">Transforme momentos especiais com sua família, célula e
+                escola dominical</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-3xl mx-auto mb-12">
+                <div class="bg-blue-500/50 rounded-lg p-4 flex items-center justify-center text-xl font-semibold"><i
+                        class="fa-solid fa-users mr-3"></i> Células</div>
+                <div class="bg-blue-500/50 rounded-lg p-4 flex items-center justify-center text-xl font-semibold"><i
+                        class="fa-solid fa-school mr-3"></i> Escola Dominical</div>
+                <div class="bg-blue-500/50 rounded-lg p-4 flex items-center justify-center text-xl font-semibold"><i
+                        class="fa-solid fa-heart mr-3"></i> Devocional Familiar</div>
+                <div class="bg-blue-500/50 rounded-lg p-4 flex items-center justify-center text-xl font-semibold"><i
+                        class="fa-solid fa-graduation-cap mr-3"></i> Pedagogia</div>
+            </div>
+            <a href="#oferta"
+                class="bg-green-500 hover:bg-green-600 text-white font-bold text-xl py-4 px-10 rounded-full shadow-lg transform hover:scale-105 transition-transform duration-300">
+                QUERO VER AS OFERTAS
+            </a>
+        </div>
+    </section>
+
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-3xl font-bold text-slate-800 mb-2">O que nossos clientes dizem</h2>
+            <div class="flex justify-center items-center text-yellow-400 mb-1">
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star-half-stroke"></i>
+            </div>
+            <p class="text-slate-600 mb-12">4.9/5 - 347 avaliações</p>
+            <div class="flex justify-center items-center gap-4 md:gap-8 max-w-4xl mx-auto flex-wrap">
+                <img src="depoimentos/IMG-5295-2.jpg" alt="Depoimento de cliente satisfeito 1"
+                    class="w-1/2 md:w-1/3 max-w-[250px] rounded-2xl shadow-lg">
+                <img src="depoimentos/IMG-5297-2.jpg" alt="Depoimento de cliente satisfeito 2"
+                    class="w-1/2 md:w-1/3 max-w-[250px] rounded-2xl shadow-lg">
+                <img src="depoimentos/IMG-5298-2.jpg" alt="Depoimento de cliente satisfeito 3"
+                    class="w-1/2 md:w-1/3 max-w-[250px] rounded-2xl shadow-lg">
+                <img src="depoimentos/IMG-5318-2.jpg" alt="Depoimento de cliente satisfeito 4"
+                    class="w-1/2 md:w-1/3 max-w-[250px] rounded-2xl shadow-lg">
+                <img src="depoimentos/IMG-5365.jpg" alt="Depoimento de cliente satisfeito 5"
+                    class="w-1/2 md:w-1/3 max-w-[250px] rounded-2xl shadow-lg">
+                <img src="depoimentos/IMG-5369.jpg" alt="Depoimento de cliente satisfeito 6"
+                    class="w-1/2 md:w-1/3 max-w-[250px] rounded-2xl shadow-lg">
+                <img src="depoimentos/IMG-5390.jpg" alt="Depoimento de cliente satisfeito 7"
+                    class="w-1/2 md:w-1/3 max-w-[250px] rounded-2xl shadow-lg">
+            </div>
+        </div>
+    </section>
+
+    <section id="oferta" class="py-20 bg-slate-50">
+        <div class="container mx-auto px-6 text-center">
+            <div
+                class="flex justify-center items-center gap-2 bg-red-500 text-white font-bold py-2 px-4 rounded-full max-w-md mx-auto mb-4">
+                <i class="fa-solid fa-fire"></i>
+                <span id="apenas-hoje">OFERTA LIMITADA - Apenas hoje</span>
+            </div>
+            <h2 class="text-3xl font-bold text-slate-800 mb-2">Escolha Sua Oferta Especial</h2>
+            <p class="text-slate-600 max-w-2xl mx-auto mb-12">Livros de qualidade profissional para enriquecer seus
+                momentos de fé</p>
+            <div class="flex flex-col lg:flex-row justify-center items-stretch gap-8 max-w-5xl mx-auto">
+                <div class="w-full lg:w-1/2 border border-slate-200 rounded-lg p-6 bg-white flex flex-col">
+                    <h3 class="text-xl font-bold text-slate-800 mb-2"><i
+                            class="fa-solid fa-star text-orange-400 mr-2"></i>Pacote Básico</h3>
+                    <div class="flex items-center justify-center gap-4 mb-2">
+                        <span class="text-2xl text-slate-400 line-through">R$ 47,99</span>
+                        <span class="bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-full">-99%</span>
+                    </div>
+                    <div class="text-5xl font-bold text-slate-900 mb-2">R$ 10,00</div>
+                    <p class="text-slate-500 mb-6">Você economiza R$ 37,99</p>
                     <ul class="text-left space-y-3 mb-8">
-                        <li class="flex items-center"><svg class="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>15 Livros de Colorir</li>
-                        <li class="flex items-center"><svg class="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Acesso Imediato</li>
-                        <li class="flex items-center"><svg class="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Formato PDF</li>
+                        <li class="flex items-center"><i class="fa-solid fa-check text-green-500 mr-2"></i>35 Livros de
+                            Colorir em PDF</li>
+                        <li class="flex items-center"><i class="fa-solid fa-check text-green-500 mr-2"></i>Temas
+                            Bíblicos Variados</li>
+                        <li class="flex items-center"><i class="fa-solid fa-check text-green-500 mr-2"></i>Acesso
+                            Vitalício</li>
+                        <li class="flex items-center"><i class="fa-solid fa-check text-green-500 mr-2"></i>Suporte por
+                            WhatsApp</li>
+                        <li class="flex items-center"><i class="fa-solid fa-check text-green-500 mr-2"></i>Garantia de 7
+                            dias</li>
                     </ul>
-                    <a href="#" class="w-full block bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-lg transition-colors">
-                        ESCOLHER PLANO ESSENCIAL
+                    <a href="checkout.html?pacote=basic"
+                        class="w-full mt-auto block bg-teal-500 hover:bg-teal-600 text-white font-bold py-3 px-6 rounded-lg transition-colors">
+                        QUERO O PACOTE BÁSICO
                     </a>
                 </div>
 
-                <div class="w-full lg:w-1/2 border-4 border-yellow-400 rounded-lg p-8 bg-white relative shadow-2xl">
-                    <span class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-yellow-400 text-slate-800 text-sm font-bold px-4 py-1 rounded-full">MAIS POPULAR</span>
-                    <h3 class="text-2xl font-bold text-blue-600">Pacote Completo</h3>
-                    <p class="text-slate-500 mb-6">O melhor custo-benefício</p>
-                    <div class="text-5xl font-bold text-slate-900 mb-4">
-                        R$ 17,00
+                <div
+                    class="w-full lg:w-1/2 border-2 border-orange-400 rounded-lg p-6 bg-white relative shadow-2xl flex flex-col">
+                    <span
+                        class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-orange-400 text-white text-sm font-bold px-4 py-1 rounded-full"><i
+                            class="fa-solid fa-fire-flame-curved"></i> MAIS VENDIDO</span>
+                    <h3 class="text-xl font-bold text-slate-800 mb-2"><i
+                            class="fa-solid fa-crown text-orange-400 mr-2"></i>Pacote Premium</h3>
+                    <div class="flex items-center justify-center gap-4 mb-2">
+                        <span class="text-2xl text-slate-400 line-through">R$ 258,09</span>
+                        <span class="bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-full">-93%</span>
                     </div>
-                    <p class="text-slate-600 mb-6">Pagamento Único</p>
-                     <ul class="text-left space-y-3 mb-8">
-                        <li class="flex items-center"><svg class="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg><span class="font-bold">35 Livros de Colorir</span></li>
-                        <li class="flex items-center"><svg class="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Acesso Imediato e Vitalício</li>
-                        <li class="flex items-center"><svg class="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Formato PDF</li>
-                        <li class="flex items-center"><svg class="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg><span class="font-bold">Bônus Exclusivos</span></li>
+                    <div class="text-5xl font-bold text-slate-900 mb-2">R$ 17,00</div>
+                    <p class="text-slate-500 mb-6">Você economiza R$ 239,00</p>
+                    <div class="text-center bg-green-100 text-green-800 font-semibold p-2 rounded-md mb-4">TUDO DO
+                        PACOTE BÁSICO +</div>
+                    <ul class="text-left space-y-2 mb-8 bg-orange-50 p-4 rounded-md">
+                        <li class="flex items-center font-semibold"><i
+                                class="fa-solid fa-gift text-orange-500 mr-2 w-5 text-center"></i>Planner Devocional
+                            Infantil</li>
+                        <li class="flex items-center font-semibold"><i
+                                class="fa-solid fa-gift text-orange-500 mr-2 w-5 text-center"></i>Livro de Atividades
+                            Cristãs</li>
+                        <li class="flex items-center font-semibold"><i
+                                class="fa-solid fa-gift text-orange-500 mr-2 w-5 text-center"></i>Desafio Bíblico de 7
+                            dias</li>
+                        <li class="flex items-center font-semibold"><i
+                                class="fa-solid fa-gift text-orange-500 mr-2 w-5 text-center"></i>Cartões para
+                            Memorização</li>
                     </ul>
-                    <a href="#" class="w-full block bg-yellow-400 hover:bg-yellow-500 text-slate-800 font-bold py-3 px-6 rounded-lg transition-colors shadow-lg transform hover:scale-105">
-                        QUERO O PACOTE COMPLETO!
+                    <a href="checkout.html?pacote=premium"
+                        class="w-full mt-auto block bg-orange-400 hover:bg-orange-500 text-white font-bold py-3 px-6 rounded-lg transition-colors shadow-lg transform hover:scale-105">
+                        QUERO O PACOTE PREMIUM
                     </a>
+                    <p class="text-slate-500 text-sm mt-4">+500 pessoas já escolheram este pacote</p>
                 </div>
             </div>
         </div>
@@ -121,39 +413,118 @@
         <div class="container mx-auto px-6 max-w-3xl">
             <h2 class="text-3xl font-bold text-center text-slate-800 mb-8">Perguntas Frequentes</h2>
             <div class="space-y-4">
-                <details class="p-4 border rounded-lg">
-                    <summary class="font-semibold cursor-pointer">Como vou receber o material?</summary>
-                    <p class="mt-2 text-slate-600">Após a confirmação do pagamento, você receberá um e-mail com um link para baixar todos os livros em formato PDF.</p>
+                <details class="p-4 border rounded-lg bg-slate-50">
+                    <summary class="font-semibold cursor-pointer">Como recebo os livros?</summary>
+                    <p class="mt-2 text-slate-600">Após a confirmação do pagamento, você receberá um e-mail com um link
+                        para baixar todos os livros em formato PDF.</p>
                 </details>
-                <details class="p-4 border rounded-lg">
+                <details class="p-4 border rounded-lg bg-slate-50">
                     <summary class="font-semibold cursor-pointer">Posso imprimir os desenhos?</summary>
-                    <p class="mt-2 text-slate-600">Sim! Você pode imprimir quantas vezes quiser, para usar com seus filhos, em escolas dominicais ou com outras crianças.</p>
+                    <p class="mt-2 text-slate-600">Sim! Você pode imprimir quantas vezes quiser, para usar com seus
+                        filhos, em escolas dominicais ou com outras crianças.</p>
                 </details>
-                 <details class="p-4 border rounded-lg">
+                <details class="p-4 border rounded-lg bg-slate-50">
                     <summary class="font-semibold cursor-pointer">O pagamento é seguro?</summary>
-                    <p class="mt-2 text-slate-600">Com certeza. Usamos uma plataforma de pagamento reconhecida e segura, que protege todos os seus dados.</p>
+                    <p class="mt-2 text-slate-600">Com certeza. Usamos uma plataforma de pagamento reconhecida e segura,
+                        que protege todos os seus dados.</p>
                 </details>
+                <details class="p-4 border rounded-lg bg-slate-50">
+                    <summary class="font-semibold cursor-pointer">Como funciona a garantia?</summary>
+                    <p class="mt-2 text-slate-600">Oferecemos garantia incondicional de 7 dias. Se não ficar satisfeito
+                        por qualquer motivo,
+                        devolvemos 100% do seu dinheiro sem perguntas.</p>
+                </details>
+
+
+
             </div>
         </div>
     </section>
-    
+
     <section class="bg-slate-50 py-16">
+
         <div class="container mx-auto px-6 max-w-3xl text-center">
             <div class="bg-white p-8 rounded-lg border border-slate-200 flex flex-col md:flex-row items-center gap-6">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-20 w-20 text-green-500 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 20.944a11.955 11.955 0 0118 0z" /></svg>
+                <i class="fa-solid fa-shield-halved text-6xl text-green-500 flex-shrink-0"></i>
                 <div class="text-center md:text-left">
                     <h3 class="text-2xl font-bold text-slate-800">Garantia de 7 Dias!</h3>
-                    <p class="text-slate-600 mt-2">Seu risco é zero. Se por qualquer motivo você não ficar satisfeito com o material, basta pedir seu dinheiro de volta em até 7 dias e nós devolveremos 100% do valor, sem perguntas.</p>
+                    <p class="text-slate-600 mt-2">Seu risco é zero. Se por qualquer motivo você não ficar satisfeito
+                        com o material, basta pedir seu dinheiro de volta em até 7 dias e nós devolveremos 100% do
+                        valor, sem perguntas.</p>
                 </div>
             </div>
+
+        </div>
+        <a href="#oferta">
+            <button
+                class="block mx-auto mt-20 mb-10 bg-green-500 hover:bg-green-600 text-white font-bold text-lg md:text-xl py-4 px-10 rounded-full shadow-lg transform hover:scale-105 transition-transform duration-300">
+                TIREI MINHAS DÚVIDAS, QUERO COMPRAR
+            </button></a>
+
+        <div class="container mt-10 mx-auto px-6 text-center text-sm font-semibold">
+            <i class="fa-solid fa-lock"></i> Compra 100% Segura e Protegida
+            <br>
+            <i class="fa-solid fa-shield-halved "></i> SSL Seguro
         </div>
     </section>
+
+
 
     <footer class="bg-slate-800 text-white py-8">
         <div class="container mx-auto px-6 text-center">
-            <p>&copy; 2025 Luz Divina Kids. Todos os direitos reservados.</p>
+            <p>&copy; 2025 Jesus Goods. Todos os direitos reservados.</p>
         </div>
     </footer>
 
+    <script>
+        var swiper = new Swiper(".mySwiper", {
+            // Quantos slides mostrar por vez
+            slidesPerView: 2,
+            // Espaço entre os slides
+            spaceBetween: 20,
+            // Loop infinito
+            loop: true,
+            // Autoplay para girar sozinho
+            autoplay: {
+                delay: 2500,
+                disableOnInteraction: false,
+            },
+            // Paginação (as bolinhas)
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+            // Botões de navegação (setas)
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+            // Configuração para diferentes tamanhos de tela (responsivo)
+            breakpoints: {
+                // quando a tela for >= 640px
+                640: {
+                    slidesPerView: 2,
+                    spaceBetween: 20,
+                },
+                // quando a tela for >= 768px
+                768: {
+                    slidesPerView: 3,
+                    spaceBetween: 30,
+                },
+                // quando a tela for >= 1024px
+                1024: {
+                    slidesPerView: 4,
+                    spaceBetween: 40,
+                },
+            },
+        });
+        // Atualiza o texto do span com a data de hoje no formato dd/mm/aa
+        const hoje = new Date();
+        const dia = String(hoje.getDate()).padStart(2, '0');
+        const mes = String(hoje.getMonth() + 1).padStart(2, '0');
+        const ano = String(hoje.getFullYear()).slice(-2);
+        document.getElementById('apenas-hoje').textContent = `OFERTA LIMITADA - Apenas hoje ${dia}/${mes}/${ano}`;
+    </script>
 </body>
+
 </html>

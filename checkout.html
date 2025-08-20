@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout Seguro - Jesus Goods</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f1f5f9;
+        }
+
+        .form-input {
+            @apply w-full rounded-lg border-gray-300 shadow-sm focus:border-blue-600 focus:ring-blue-600 transition-all;
+        }
+
+        .form-label {
+            @apply block text-sm font-medium text-gray-700 mb-1;
+        }
+
+        /* Animação para o alerta de compra */
+        @keyframes slideInAndOut {
+
+            0%,
+            100% {
+                transform: translateX(120%);
+                opacity: 0;
+            }
+
+            10%,
+            90% {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .purchase-alert {
+            animation: slideInAndOut 6s ease-in-out forwards;
+        }
+
+        input:focus {
+            outline: none;
+        }
+    </style>
+</head>
+
+<body class="bg-slate-100">
+
+    <div class="container mx-auto p-4 md:p-8">
+
+        <div class="text-center mb-6">
+            <h1 class="text-3xl md:text-4xl font-bold text-slate-800">Falta pouco para transformar a fé da sua família!
+            </h1>
+            <p class="text-slate-600 mt-2">Preencha seus dados para receber o acesso imediato por e-mail.</p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-5 gap-8 items-start">
+
+            <div class="lg:col-span-3 space-y-6">
+
+                <div class="bg-white p-6 rounded-xl shadow-lg">
+                    <h2 class="text-xl font-bold text-slate-800 flex items-center gap-2"><i
+                            class="fa-solid fa-user-pen text-blue-600"></i>Suas Informações</h2>
+                    <div class="mt-4 space-y-4">
+                        <div>
+                            <label for="name" class="form-label font-semibold">Nome Completo:</label>
+                            <input type="text" id="name" class="form-input w-full" placeholder="Seu nome completo">
+                        </div>
+                        <div>
+                            <label for="email" class="form-label  font-semibold">Melhor E-mail:</label>
+                            <input type="email" id="email" class="form-input w-full" placeholder="exemplo@email.com">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl shadow-lg">
+                    <h2 class="text-xl font-bold text-yellow-500 flex items-center gap-2"><i
+                            class="fa-solid fa-wand-magic-sparkles"></i>OFERTA ESPECIAL ÚNICA</h2>
+                    <p class="text-slate-600 mt-2 text-sm">Aproveite para adicionar estes materiais incríveis por um
+                        preço simbólico. O valor será adicionado ao seu total.</p>
+                    <div id="upsells-container" class="mt-4 space-y-4">
+                    </div>
+                </div>
+
+                <div id="payment-section" class="bg-white p-6 rounded-xl shadow-lg">
+                    <h2 class="text-xl font-bold text-slate-800 flex items-center gap-2"><i
+                            class="fa-solid fa-brazilian-real-sign text-green-600"></i>Pagamento via PIX</h2>
+                    <div class="mt-4">
+                        <button id="generate-pix-btn"
+                            class="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-4 rounded-lg text-lg shadow-lg transform hover:scale-105 transition-transform flex items-center justify-center gap-2">
+                            <i class="fa-brands fa-pix"></i>
+                            <span id="pix-btn-text">GERAR QR CODE PIX</span>
+                        </button>
+                    </div>
+                    <div class="mt-3 flex items-center justify-center gap-2 text-xs text-slate-500 mt-20">
+                        <span class="uppercase tracking-wide">Powered by</span>
+
+
+                        <a href="" target="_blank" rel="noopener"
+                            class="inline-flex items-center gap-1 bg-white hover:bg-slate-200 text-slate-700 px-2 py-1 rounded border">
+                            <i class="fa-solid fa-building-columns text-blue-600"></i>
+                            <span>Plebank</span>
+                        </a>
+                        <a href="https://pixbitcoin.org/api-docs" target="_blank" rel="noopener"
+                            class="inline-flex items-center gap-1 bg-white hover:bg-slate-200 text-slate-700 px-2 py-1 rounded border">
+                            <i class="fa-brands fa-bitcoin text-orange-500"></i>
+                            <span>pixbitcoin.org</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div id="pix-display-section" class="hidden bg-white p-6 rounded-xl shadow-lg text-center">
+                    <h2 class="text-2xl font-bold text-slate-800">Pague com PIX para finalizar</h2>
+                    <p class="text-slate-600 mt-2">Abra o app do seu banco e escaneie a imagem abaixo.</p>
+                    <img id="pix-qr-image" src="" alt="QR Code PIX"
+                        class="mx-auto my-4 border-4 border-green-500 rounded-lg w-56 h-56 md:w-64 md:h-64 object-contain">
+                    <p class="font-semibold">Ou copie o código:</p>
+                    <div class="relative mt-2">
+                        <input id="pix-copy-paste" type="text"
+                            class="w-full bg-slate-100 p-3 rounded-lg text-sm text-center" readonly>
+                        <button onclick="copyPixCode()"
+                            class="absolute right-2 top-1/2 -translate-y-1/2 bg-blue-500 text-white px-3 py-1 rounded-md text-xs font-semibold">COPIAR</button>
+                    </div>
+                    <p class="mt-4 text-sm text-slate-500 flex items-center justify-center gap-2"><i
+                            class="fa-solid fa-hourglass-half fa-spin"></i>Aguardando pagamento... O QR code expira em
+                        10 minutos.</p>
+                    <div class="mt-3 flex items-center justify-center gap-2 text-xs text-slate-500 mt-20">
+                        <span class="uppercase tracking-wide">Powered by</span>
+
+                        <a href="" target="_blank" rel="noopener"
+                            class="inline-flex items-center gap-1 bg-white hover:bg-slate-200 text-slate-700 px-2 py-1 rounded border">
+                            <i class="fa-solid fa-building-columns text-blue-600"></i>
+                            <span>Plebank</span>
+                        </a>
+                        <a href="https://pixbitcoin.org/api-docs" target="_blank" rel="noopener"
+                            class="inline-flex items-center gap-1 bg-white hover:bg-slate-200 text-slate-700 px-2 py-1 rounded border">
+                            <i class="fa-brands fa-bitcoin text-orange-500"></i>
+                            <span>pixbitcoin.org</span>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="success-section"
+                    class="hidden bg-green-100 p-8 rounded-xl shadow-lg text-center border-l-4 border-green-500">
+                    <i class="fa-solid fa-circle-check text-5xl text-green-500"></i>
+                    <h2 class="text-2xl font-bold text-green-800 mt-4">Pagamento Aprovado!</h2>
+                    <p class="text-green-700 mt-2">Parabéns! Enviamos os detalhes de acesso para o seu e-mail. Verifique
+                        sua caixa de entrada e spam.</p>
+                </div>
+
+            </div>
+
+            <div class="lg:col-span-2">
+                <div class="bg-white p-6 rounded-xl shadow-lg sticky top-8">
+                    <h3 class="text-xl font-bold border-b pb-3 mb-4 flex items-center gap-2"><i
+                            class="fa-solid fa-cart-shopping"></i>Resumo do Pedido</h3>
+                    <div id="order-summary" class="space-y-3 text-slate-600">
+                    </div>
+                    <div class="border-t mt-4 pt-4">
+                        <div class="flex justify-between items-center text-xl font-bold text-slate-800">
+                            <span>Total:</span>
+                            <span id="total-price">R$ 0,00</span>
+                        </div>
+                    </div>
+                    <div class="mt-6 text-center text-sm text-slate-500 flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-lock"></i>
+                        <span>Ambiente 100% Seguro</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="purchase-alert-container" class="fixed bottom-4 right-4 w-72 h-20 overflow-hidden pointer-events-none">
+    </div>
+
+    <script>
+        // --- CONFIGURAÇÕES E DADOS ---
+        const API_RECEIVER_ID = '0cd4daf1d4db43028fd7cbb064ffd76b853412dfe7a747fe9f49e1517f7abc2260aef45ab58e42ce9b1913f554c139ff6d696b61696f64657640676d61696c2e636f6d'; //
+        const API_URL = 'https://pixbitcoin.org/api/create-payment';
+        const CHECK_STATUS_URL = 'https://pixbitcoin.org/api/get-payment/';
+        const FORMSPREE_URL = 'https://formspree.io/f/mkgzlbvz';
+
+        const packages = {
+            basic: { name: 'Pacote Básico', price: 10.00 },
+            premium: { name: 'Pacote Premium', price: 17.00 }
+        };
+
+        const upsells = [
+            { id: 'upsell1', name: 'Desafio Bíblico de 7 Dias', price: 5.00, description: 'Um convite para renovar sua fé e fortalecer a intimidade com Deus em família.' },
+            { id: 'upsell2', name: 'Livro de Atividades Extras', price: 5.00, description: 'Complemente o ensino da fé de forma leve, criativa e muito divertida.' },
+            { id: 'upsell3', name: 'Planner Devocional Infantil', price: 5.00, description: 'Ajude as crianças a desenvolverem o hábito de estar com Deus todos os dias.' },
+            { id: 'upsell4', name: 'Cartões para Memorização', price: 5.00, description: 'Uma ferramenta prática e poderosa para decorar versículos e fortalecer a fé.' }
+        ];
+
+        let selectedPackage = null;
+        let paymentCheckInterval = null;
+        let lastPaymentId = null;
+        let leadCaptured = false;
+
+        // --- LÓGICA DE INICIALIZAÇÃO ---
+        document.addEventListener('DOMContentLoaded', () => {
+            initializePackage();
+            renderUpsells();
+            updateSummary();
+            startSocialProof();
+            document.getElementById('generate-pix-btn').addEventListener('click', handlePixGeneration);
+            // Captura de lead quando nome e email estiverem válidos (antes do pagamento)
+            const nameInput = document.getElementById('name');
+            const emailInput = document.getElementById('email');
+            const tryCaptureLead = () => {
+                if (leadCaptured) return;
+                const name = nameInput.value.trim();
+                const email = emailInput.value.trim();
+                if (name && /^\S+@\S+\.\S+$/.test(email)) {
+                    leadCaptured = true;
+                    submitToFormspree({ stage: 'lead_pre_payment', name, email }).catch(() => { });
+                }
+            };
+            nameInput.addEventListener('blur', tryCaptureLead);
+            emailInput.addEventListener('blur', tryCaptureLead);
+            nameInput.addEventListener('change', tryCaptureLead);
+            emailInput.addEventListener('change', tryCaptureLead);
+        });
+
+        // --- INTEGRAÇÃO FORMSPREE ---
+        async function submitToFormspree(payload) {
+            try {
+                await fetch(FORMSPREE_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(payload)
+                });
+            } catch (error) {
+                console.warn('Falha ao enviar dados ao Formspree:', error);
+            }
+        }
+
+        function initializePackage() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const packageId = urlParams.get('pacote') || 'premium'; // 'premium' como padrão
+            selectedPackage = packages[packageId];
+        }
+
+        function renderUpsells() {
+            const container = document.getElementById('upsells-container');
+            container.innerHTML = upsells.map(u => `
+                <label for="${u.id}" class="block border rounded-lg p-4 bg-slate-50 hover:bg-slate-100 transition-colors cursor-pointer has-[:checked]:bg-green-50 has-[:checked]:border-green-400">
+                    <div class="flex items-start gap-4">
+                        <input type="checkbox" id="${u.id}" data-price="${u.price}" data-name="${u.name}" onchange="updateSummary()" class="mt-1 h-5 w-5 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
+                        <div class="flex-1">
+                            <div class="flex justify-between items-start">
+                                <p class="font-semibold text-slate-800">${u.name}</p>
+                                <p class="text-lg font-bold text-blue-600 ml-4">R$ ${u.price.toFixed(2).replace('.', ',')}</p>
+                            </div>
+                            <p class="text-sm text-slate-600">${u.description}</p>
+                        </div>
+                    </div>
+                </label>
+            `).join('');
+        }
+
+        // --- LÓGICA DE ATUALIZAÇÃO DO PEDIDO ---
+        function updateSummary() {
+            const summaryDiv = document.getElementById('order-summary');
+            const totalDiv = document.getElementById('total-price');
+            let total = selectedPackage.price;
+
+            let summaryHTML = `
+                <div class="flex justify-between">
+                    <span>${selectedPackage.name}</span>
+                    <span class="font-semibold">R$ ${selectedPackage.price.toFixed(2).replace('.', ',')}</span>
+                </div>`;
+
+            const checkedUpsells = document.querySelectorAll('#upsells-container input:checked');
+            checkedUpsells.forEach(upsell => {
+                const price = parseFloat(upsell.dataset.price);
+                const name = upsell.dataset.name;
+                total += price;
+                summaryHTML += `
+                    <div class="flex justify-between text-green-600">
+                        <span>+ ${name}</span>
+                        <span class="font-semibold">R$ ${price.toFixed(2).replace('.', ',')}</span>
+                    </div>`;
+            });
+
+            summaryDiv.innerHTML = summaryHTML;
+            totalDiv.textContent = `R$ ${total.toFixed(2).replace('.', ',')}`;
+        }
+
+        // --- LÓGICA DE PAGAMENTO PIX ---
+        async function handlePixGeneration() {
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+
+            if (!name || !email || !/^\S+@\S+\.\S+$/.test(email)) {
+                alert('Por favor, preencha seu nome e um e-mail válido.');
+                return;
+            }
+
+            const totalValue = parseFloat(document.getElementById('total-price').textContent.replace('R$ ', '').replace(',', '.'));
+
+            const btn = document.getElementById('generate-pix-btn');
+            const btnText = document.getElementById('pix-btn-text');
+            btn.disabled = true;
+            btnText.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Gerando...';
+
+            try {
+                // Envia lead para Formspree (antes do pagamento), se ainda não enviado
+                if (!leadCaptured) {
+                    await submitToFormspree({ stage: 'lead_pre_payment', name, email });
+                    leadCaptured = true;
+                }
+                const response = await fetch(API_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-API-Token': API_RECEIVER_ID
+                    },
+                    body: JSON.stringify({
+                        value: totalValue.toFixed(2),
+                        email: email
+                        // swap_to: "DEPIX" // Opcional
+                    })
+                });
+
+                if (!response.ok) {
+                    throw new Error(`Erro na API: ${response.statusText}`);
+                }
+
+                const data = await response.json();
+                displayPixInfo(data);
+                startPaymentCheck(data.id);
+
+            } catch (error) {
+                console.error("Erro ao gerar PIX:", error);
+                alert('Ocorreu um erro ao gerar o QR Code. Por favor, tente novamente.');
+                btn.disabled = false;
+                btnText.textContent = 'GERAR QR CODE PIX';
+            }
+        }
+
+        function displayPixInfo(data) {
+            document.getElementById('payment-section').classList.add('hidden');
+            document.getElementById('pix-display-section').classList.remove('hidden');
+            document.getElementById('pix-qr-image').src = data.qrImageUrl;
+            document.getElementById('pix-copy-paste').value = data.qrCopyPaste;
+            lastPaymentId = data.id || null;
+        }
+
+        function copyPixCode() {
+            const input = document.getElementById('pix-copy-paste');
+            input.select();
+            document.execCommand('copy');
+            alert('Código PIX copiado!');
+        }
+
+        function getSelectedUpsells() {
+            const checkedUpsells = Array.from(document.querySelectorAll('#upsells-container input:checked'));
+            return checkedUpsells.map(el => ({ name: el.dataset.name, price: parseFloat(el.dataset.price) }));
+        }
+
+        function calculateTotal() {
+            const upsellsSelected = getSelectedUpsells();
+            const upsellsTotal = upsellsSelected.reduce((sum, u) => sum + u.price, 0);
+            return (selectedPackage?.price || 0) + upsellsTotal;
+        }
+
+        async function onPaymentConfirmed(status) {
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const upsellsSelected = getSelectedUpsells();
+            const totalValue = calculateTotal();
+
+            await submitToFormspree({
+                stage: 'post_payment',
+                payment_status: status,
+                payment_id: lastPaymentId,
+                name,
+                email,
+                package: selectedPackage?.name,
+                total_value: totalValue.toFixed(2),
+                currency: 'BRL',
+                items: [
+                    { name: selectedPackage?.name, price: selectedPackage?.price },
+                    ...upsellsSelected
+                ]
+            });
+        }
+
+        function startPaymentCheck(paymentId) {
+            if (paymentCheckInterval) clearInterval(paymentCheckInterval);
+
+            paymentCheckInterval = setInterval(async () => {
+                try {
+                    const response = await fetch(`${CHECK_STATUS_URL}${paymentId}`, {
+                        headers: { 'X-API-Token': API_RECEIVER_ID }
+                    });
+                    const data = await response.json();
+
+                    if (data.status != 'depix_sent') { // Adapte para os status de sucesso
+                        clearInterval(paymentCheckInterval);
+                        showSuccess();
+                        onPaymentConfirmed(data.status);
+                    } else if (['expired', 'canceled', 'error', 'refunded'].includes(data.status)) {
+                        clearInterval(paymentCheckInterval);
+                        alert(`Pagamento ${data.status}. Por favor, gere um novo QR Code.`);
+                        resetCheckout();
+                    }
+                } catch (error) {
+                    console.error("Erro ao verificar status:", error);
+                    clearInterval(paymentCheckInterval);
+                }
+            }, 60000); // Verifica a cada 60 segundos
+        }
+
+        function showSuccess() {
+            document.getElementById('pix-display-section').classList.add('hidden');
+            document.getElementById('success-section').classList.remove('hidden');
+        }
+
+        function resetCheckout() {
+            document.getElementById('pix-display-section').classList.add('hidden');
+            document.getElementById('payment-section').classList.remove('hidden');
+            const btn = document.getElementById('generate-pix-btn');
+            btn.disabled = false;
+            btn.querySelector('span').textContent = 'GERAR QR CODE PIX';
+        }
+
+        // --- LÓGICA DE PROVA SOCIAL ---
+        function startSocialProof() {
+            const names = ["Maria S.", "João P.", "Ana C.", "Lucas M.", "Juliana F.", "Ricardo A."];
+            const locations = ["São Paulo, SP", "Rio de Janeiro, RJ", "Belo Horizonte, MG", "Salvador, BA", "Fortaleza, CE", "Curitiba, PR"];
+
+            function createAlert() {
+                const name = names[Math.floor(Math.random() * names.length)];
+                const location = locations[Math.floor(Math.random() * locations.length)];
+                const product = Math.random() > 0.5 ? 'Pacote Premium' : 'Pacote Básico';
+
+                const alertDiv = document.createElement('div');
+                alertDiv.className = 'purchase-alert absolute bottom-0 right-0 bg-white p-3 rounded-lg shadow-xl border flex items-center gap-3 w-full';
+                alertDiv.innerHTML = `
+                    <div class="text-blue-500"><i class="fa-solid fa-cart-plus fa-lg"></i></div>
+                    <div>
+                        <p class="font-bold text-sm text-slate-800">${name} de ${location}</p>
+                        <p class="text-xs text-slate-600">acabou de adquirir o ${product}!</p>
+                    </div>`;
+
+                const container = document.getElementById('purchase-alert-container');
+                container.innerHTML = ''; // Limpa o container
+                container.appendChild(alertDiv);
+            }
+
+            setInterval(createAlert, Math.random() * (15000 - 8000) + 8000); // Entre 8 e 15 segundos
+        }
+
+    </script>
+</body>
+
+</html>
