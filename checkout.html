@@ -184,10 +184,21 @@
 
     <script>
         // --- CONFIGURAÇÕES E DADOS ---
-        const API_RECEIVER_ID = '0cd4daf1d4db43028fd7cbb064ffd76b853412dfe7a747fe9f49e1517f7abc2260aef45ab58e42ce9b1913f554c139ff6d696b61696f64657640676d61696c2e636f6d'; //
-        const API_URL = 'https://pixbitcoin.org/api/create-payment';
-        const CHECK_STATUS_URL = 'https://pixbitcoin.org/api/get-payment/';
-        const FORMSPREE_URL = 'https://formspree.io/f/mkgzlbvz';
+        // Base do backend:
+        // - Use ?api=https://seu-backend para sobrescrever em produção
+        // - Em file:// ou localhost, use http://localhost:8000 por padrão
+        const queryParams = new URLSearchParams(window.location.search);
+        const apiOverride = queryParams.get('api');
+        const isLocalHostName = ['localhost', '127.0.0.1', '0.0.0.0'].includes(window.location.hostname);
+        const BACKEND_BASE = apiOverride
+            ? apiOverride.replace(/\/$/, '')
+            : (window.location.protocol === 'file:'
+                ? 'http://localhost:8000'
+                : (isLocalHostName
+                    ? `${window.location.protocol}//${window.location.hostname}:8000`
+                    : 'https://jesus-goods-api-production.up.railway.app'));
+        const API_URL = `${BACKEND_BASE}/pixbitcoin/create`;
+        const CHECK_STATUS_URL = `${BACKEND_BASE}/pixbitcoin/status/`;
 
         const packages = {
             basic: { name: 'Pacote Básico', price: 10.00 },
@@ -222,7 +233,7 @@
                 const email = emailInput.value.trim();
                 if (name && /^\S+@\S+\.\S+$/.test(email)) {
                     leadCaptured = true;
-                    submitToFormspree({ stage: 'lead_pre_payment', name, email }).catch(() => { });
+                    submitLead(name, email).catch(() => { });
                 }
             };
             nameInput.addEventListener('blur', tryCaptureLead);
@@ -232,19 +243,14 @@
         });
 
         // --- INTEGRAÇÃO FORMSPREE ---
-        async function submitToFormspree(payload) {
+        async function submitLead(name, email) {
             try {
-                await fetch(FORMSPREE_URL, {
+                await fetch(BACKEND_BASE + '/leads', {
                     method: 'POST',
-                    headers: {
-                        'Accept': 'application/json',
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(payload)
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ full_name: name, email: email, source: 'checkout' })
                 });
-            } catch (error) {
-                console.warn('Falha ao enviar dados ao Formspree:', error);
-            }
+            } catch (error) { console.warn('Falha ao enviar lead:', error); }
         }
 
         function initializePackage() {
@@ -317,19 +323,16 @@
             btnText.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Gerando...';
 
             try {
-                // Envia lead para Formspree (antes do pagamento), se ainda não enviado
+                // Envia lead ao backend (antes do pagamento), se ainda não enviado
                 if (!leadCaptured) {
-                    await submitToFormspree({ stage: 'lead_pre_payment', name, email });
+                    await submitLead(name, email);
                     leadCaptured = true;
                 }
                 const response = await fetch(API_URL, {
                     method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'X-API-Token': API_RECEIVER_ID
-                    },
+                    headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
-                        value: totalValue.toFixed(2),
+                        value: totalValue,
                         email: email
                         // swap_to: "DEPIX" // Opcional
                     })
@@ -383,20 +386,25 @@
             const upsellsSelected = getSelectedUpsells();
             const totalValue = calculateTotal();
 
-            await submitToFormspree({
-                stage: 'post_payment',
-                payment_status: status,
-                payment_id: lastPaymentId,
-                name,
-                email,
-                package: selectedPackage?.name,
-                total_value: totalValue.toFixed(2),
-                currency: 'BRL',
-                items: [
-                    { name: selectedPackage?.name, price: selectedPackage?.price },
-                    ...upsellsSelected
-                ]
-            });
+            try {
+                await fetch(BACKEND_BASE + '/orders/fulfill', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        payment_status: status,
+                        payment_id: lastPaymentId,
+                        name,
+                        email,
+                        package: selectedPackage?.name,
+                        total_value: totalValue,
+                        currency: 'BRL',
+                        items: [
+                            { name: selectedPackage?.name, price: selectedPackage?.price },
+                            ...upsellsSelected
+                        ]
+                    })
+                });
+            } catch (e) { console.warn('Falha ao registrar fulfillment', e); }
         }
 
         function startPaymentCheck(paymentId) {
@@ -404,12 +412,10 @@
 
             paymentCheckInterval = setInterval(async () => {
                 try {
-                    const response = await fetch(`${CHECK_STATUS_URL}${paymentId}`, {
-                        headers: { 'X-API-Token': API_RECEIVER_ID }
-                    });
+                    const response = await fetch(`${CHECK_STATUS_URL}${paymentId}`);
                     const data = await response.json();
 
-                    if (data.status != 'depix_sent') { // Adapte para os status de sucesso
+                    if (data.status == 'depix_sent') {
                         clearInterval(paymentCheckInterval);
                         showSuccess();
                         onPaymentConfirmed(data.status);
@@ -462,7 +468,7 @@
                 container.appendChild(alertDiv);
             }
 
-            setInterval(createAlert, Math.random() * (15000 - 8000) + 8000); // Entre 8 e 15 segundos
+            setInterval(createAlert, Math.random() * (30000 - 4000) + 4000);
         }
 
     </script>
