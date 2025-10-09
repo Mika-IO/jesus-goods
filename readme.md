@@ -7,7 +7,7 @@
 - [x] Pagamento
 - [x] Enviar email com link
 - [ ] Criar email e redes sociais
-- [ ] Criar pastas no drive
+- [x] Criar pastas no drive
 - [ ] Rodar anuncios
 
 ## Parte 2
