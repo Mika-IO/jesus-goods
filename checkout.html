@@ -341,13 +341,23 @@
                     await submitLead(name, email);
                     leadCaptured = true;
                 }
+
+                // Coleta todos os dados do pedido para enviar ao backend
+                const upsellsSelected = getSelectedUpsells();
+                const items = [
+                    { name: selectedPackage?.name, price: selectedPackage?.price },
+                    ...upsellsSelected
+                ];
+
                 const response = await fetch(API_URL, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
                         value: totalValue,
-                        email: email
-                        // swap_to: "DEPIX" // Opcional
+                        email: email,
+                        name: name,
+                        package: selectedPackage?.name,
+                        items: items
                     })
                 });
 
